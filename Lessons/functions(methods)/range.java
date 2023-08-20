@@ -18,7 +18,7 @@ public class range {
 
         for(int i = x; i <= y; i++){
             if(primeloop(i) == true){
-                System.out.println(i);
+                System.out.print(i+ " ");
             }else 
             continue;
         }
