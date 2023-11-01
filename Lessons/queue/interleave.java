@@ -5,23 +5,26 @@
  */
 import java.util.*;
 public class interleave {
-   public static void weave(Queue<Integer> q1){
-     Queue<Integer> q = new LinkedList<>();
+   public static void weave(Queue<Integer> sourcequeue){
+     Queue<Integer> bufferqueue = new LinkedList<>();
+     int size = sourcequeue.size();
 
-     for(int i = 0; i < (q1.size()/2); i++){
-        q.add(q1.remove());
+     // use a size variable instead of using sourcequeue.size() directly in the for loop, since the size will keep changing in every iteration, due to removal of elements
+     for(int i = 0; i < (size/2); i++){
+        bufferqueue.add(sourcequeue.remove());
      }
-     for(int i = 0; i<q1.size(); i++){
-        q1.add(q.remove());
-        q1.add(q1.remove());
+     for(int i = 0; i<size/2; i++){
+        sourcequeue.add(bufferqueue.remove());
+        sourcequeue.add(sourcequeue.remove());
      }
-     for(int i = 0; i<q1.size(); i++){
-        System.out.print(q1.peek());
-    }
    }
    public static void main(String args[]){
     Queue<Integer> q = new LinkedList<>();
     q.add(1); q.add(2); q.add(3); q.add(4); q.add(5); q.add(6); q.add(7); q.add(8); q.add(9); q.add(10);
-    weave(q);
+    weave(q); int size = q.size();
+    for(int i = 0; i<size; i++){
+        System.out.print(q.peek() + " ");
+        q.remove();
+    }
    }
 }
