@@ -8,7 +8,7 @@ public class nthnode {
             this.next = null;
         }
     }
-    public static NODE head; // return type of this is node
+    public static NODE head; 
     public static NODE tail;
 
     public void addFirst(int data){
