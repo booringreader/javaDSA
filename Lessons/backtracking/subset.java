@@ -3,7 +3,7 @@ package Lessons.backtracking;
 public class subset {
     public static void subst(String str, String ans, int i){
         if(i == str.length()){
-            System.out.println(ans);
+            System.out.println(ansx);
             return;
         }
 
