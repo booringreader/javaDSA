@@ -54,6 +54,13 @@ public class arraylist_implentation {
         graph[1].add(new edge(1,0,5)); // add function adds a reference to the object of class edge at the end of the arraylist
         graph[1].add(new edge(1,3,3));
         graph[1].add(new edge(1,2, 1));
+
+        // neighbors of a index
+
+        for(int i = 0; i < graph[1].size(); i++){
+            edge e = graph[1].get(i); // graph[1] gives all the arraylists of the vertex 1 and get() gives all the data stored in the arraylist (reference ot the object incase a reference is stored in the list)
+            System.out.println("src: " + e.src + " dest: " + e.dest + " wt: " + e.wt);
+        }
         
     }
 }
