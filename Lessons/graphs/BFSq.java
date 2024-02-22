@@ -47,9 +47,16 @@ public class BFSq {
                 graph[6].add(new Edge(6, 5, 1));
     }
     
-    static void bfs(ArrayList<Edge>[] graph){
-        Queue<Integer> travel = new LinkedList<>();
+    public static void bfs(ArrayList<Edge>[] graph){
         boolean visited[] = new boolean[graph.length];
+        for(int i=0; i < graph.length; i++){
+            if(!visited[i]){
+                bfsutil(graph, visited);
+            }
+        }
+    }
+    static void bfsutil(ArrayList<Edge>[] graph, boolean visited[]){
+        Queue<Integer> travel = new LinkedList<>();
         travel.add(0);
 
         while(!travel.isEmpty()){

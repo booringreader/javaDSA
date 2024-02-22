@@ -1,15 +1,7 @@
 package Lessons.graphs;
-
 import java.util.ArrayList;
 
-public class DFSrec {
-      /*
-     *      0 -- 1 - 3 ----- 5 ------- 6
-     *      |        |       |    
-     *      |        |       |   
-     *      2 ------ 4 -------
-     */
-
+public class path {
     static class Edge{
         int src, dest, wt;
 
@@ -48,33 +40,26 @@ public class DFSrec {
                 graph[6].add(new Edge(6, 5, 1));
     }
     
-    public static void dfs(ArrayList<Edge>[] graph){
-        boolean visit[] = new boolean[graph.length];
-        for(int i=0; i < graph.length; i++){
-            if(!visit[i]){
-                dfsutil(graph, i, visit);
+    // O{V+E)}
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int d, boolean visit[]){
+        visit[src] = true;
+        if(src == d){
+            return true;
+        }
+        for(int i=0; i<graph[src].size(); i++){
+            Edge e = graph[src].get(i);
+            if(!visit[e.dest] && hasPath(graph, e.dest, d, visit)){
+                return true;
             }
         }
-    }
-    static void dfsutil(ArrayList<Edge>[] graph, int current, boolean visit[]){
-        System.out.println("current: " + current);
-        visit[current] = true;
-
-        for(int i=0; i<graph[current].size(); i++){
-            Edge e = graph[current].get(i);
-
-            if(!visit[e.dest]){
-                dfsutil(graph, e.dest, visit);
-            }
-        }
-        return;
+        return false;
     }
 
     public static void main(String args[]){
         int V = 7;
         ArrayList<Edge>[] graph = new ArrayList[V];
-        generateGraph(graph);
         boolean visit[] = new boolean[graph.length];
-        dfs(graph);
+        generateGraph(graph);
+        System.out.println(hasPath(graph, 0, 5, visit));
     }
 }
