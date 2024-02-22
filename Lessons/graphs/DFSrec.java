@@ -47,16 +47,7 @@ public class DFSrec {
 
                 graph[6].add(new Edge(6, 5, 1));
     }
-    
-    public static void dfs(ArrayList<Edge>[] graph){
-        boolean visit[] = new boolean[graph.length];
-        for(int i=0; i < graph.length; i++){
-            if(!visit[i]){
-                dfsutil(graph, i, visit);
-            }
-        }
-    }
-    static void dfsutil(ArrayList<Edge>[] graph, int current, boolean visit[]){
+    static void dfs(ArrayList<Edge>[] graph, int current, boolean visit[]){
         System.out.println("current: " + current);
         visit[current] = true;
 
@@ -64,7 +55,7 @@ public class DFSrec {
             Edge e = graph[current].get(i);
 
             if(!visit[e.dest]){
-                dfsutil(graph, e.dest, visit);
+                dfs(graph, e.dest, visit);
             }
         }
         return;
@@ -75,6 +66,6 @@ public class DFSrec {
         ArrayList<Edge>[] graph = new ArrayList[V];
         generateGraph(graph);
         boolean visit[] = new boolean[graph.length];
-        dfs(graph);
+        dfs(graph, 0, visit);
     }
 }
