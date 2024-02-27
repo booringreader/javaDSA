@@ -42,7 +42,10 @@ public class cycledetect {
         graph[4].add(new Edge(4, 3));
     }
     public static boolean cyclepresent(ArrayList<Edge>[] graph){
+        // track the nodes using array
         boolean visit[] = new boolean[graph.length];
+
+        // dfs
         for(int i=0; i<graph.length; i++){
             if(!visit[i]){
                 if(cyclepresentUtil(graph, visit, i, -1)){
@@ -52,6 +55,7 @@ public class cycledetect {
         }
         return false;
     }
+    // dfsUtil
     public static boolean cyclepresentUtil(ArrayList<Edge>[] graph, boolean visit[], int current, int parent){ // parent is different from source, source(of the edge) is the current one, parent is the previous one
         visit[current] = true;
         for(int i=0; i<graph[current].size(); i++){
