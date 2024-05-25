@@ -14,6 +14,8 @@ public class allpath {
         for(int i=0; i<graph.length; i++){
             graph[i] = new ArrayList<>();
         }
+        
+        graph[0].add(new Edge(0, 3));
 
         graph[2].add(new Edge(2, 3));
 
@@ -29,6 +31,7 @@ public class allpath {
     public static void allp(ArrayList<Edge>[] graph, int src, int dest, String path){
         if(src == dest){
             System.out.print(path+dest);
+            System.out.println();
             return;
         }
         for(int i=0; i<graph[src].size(); i++){
